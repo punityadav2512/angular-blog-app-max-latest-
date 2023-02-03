@@ -23,6 +23,7 @@ mongoose
   });
 
 app.use(cors({ origin: "https://effervescent-taffy-ab563e.netlify.app/" }));
+app.use(cors());
 app.use(express.json());
 const _app_folder = "public";
 
@@ -31,14 +32,6 @@ app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use("/api/posts", postsRoutes);
 app.use("/api/user", userRoutes);
-
-// ---- SERVE STATIC FILES ---- //
-// app.get('*.*', express.static(_app_folder, {maxAge: '1y'}));
-
-// // ---- SERVE APLICATION PATHS ---- //
-// app.all('*', function (req, res) {
-//     res.status(200).sendFile(`/`, {root: _app_folder});
-// });
 
 app.use((req, res) => {
   res.sendFile(path.join(__dirname + "/public/index.html"));
