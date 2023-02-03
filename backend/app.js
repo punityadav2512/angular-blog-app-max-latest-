@@ -25,7 +25,7 @@ mongoose.connect("mongodb+srv://Punityadav2512:" + process.env.DbPW + "@cluster0
 app.use(cors());
 app.use(express.json());
 
-app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 
