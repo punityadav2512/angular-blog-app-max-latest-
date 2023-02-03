@@ -2,11 +2,14 @@
 const Post = require('../models/post');
 
 exports.createPost = async (req, res, next) => {
-    const url = req.protocol + "://" + req.get("host");
+    // const url = req.protocol + "://" + req.get("host");
+    const result = await cloudinary.uploader.upload(req.file.path);
+    const url = req.protocol + '://' + req.get('host');
     const post = new Post({
         title: req.body.title,
         content: req.body.content,
-        imagePath: url + "/images/" + req.file.filename,
+        // imagePath: url + "/images/" + req.file.filename,
+        imagePath: result.secure_url,
         creator: req.userData.userId,
     });
 
@@ -33,7 +36,9 @@ exports.updatePosts = async (req, res, next) => {
     let imagePath = req.body.imagePath;
     if (req.file) {
         const url = req.protocol + "://" + req.get("host");
-        imagePath = url + "/images/" + req.file.filename
+        const result = await cloudinary.uploader.upload(req.file.path);
+        // imagePath = url + "/images/" + req.file.filename
+        imagePath = result.secure_url;
     }
     const post = new Post({
         _id: req.body.id,
