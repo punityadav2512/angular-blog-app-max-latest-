@@ -33,14 +33,14 @@ app.use('/api/posts', postsRoutes);
 app.use('/api/user', userRoutes);
 
 app.use((req, res) => {
-    res.sendFile(path.join(__dirname + "/public/index.html"))
+    res.sendFile(path.join(__dirname + "/public/index.html"));
 })
 
-// const port = process.env.PORT || process.env.APP_PORT;
+const port = process.env.PORT || 3000;
 
 
-// // listen to app
-// app.listen(port, () => {
-//     console.log(`server is listening on port ${port}`);
-// })
-module.exports = app;
+// listen to app
+app.listen(port, () => {
+    console.log(`server is listening on port ${port}`);
+});
+// module.exports = app;
