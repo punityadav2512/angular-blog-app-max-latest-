@@ -26,13 +26,13 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/images", express.static(path.join(__dirname, "images")));
-app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/", express.static(path.join(__dirname, "/public")));
 
 
 app.use('/api/posts', postsRoutes);
 app.use('/api/user', userRoutes);
 app.use((req, res, next) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"))
+    res.sendFile(path.join(__dirname, "/public/index.html"))
 })
 
 
